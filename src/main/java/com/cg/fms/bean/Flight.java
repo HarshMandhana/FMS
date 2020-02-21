@@ -1,15 +1,13 @@
 package com.cg.fms.bean;
 
-import java.math.BigInteger;
-
 public class Flight {
 	
-	private BigInteger flightNumber;
+	private int flightNumber;
 	private String flightModel ;
 	private String carrierName;
 	private int  seatCapacity;
 
-	public Flight(BigInteger flightNumber, String flightModel, String carrierName, int seatCapacity) {
+	public Flight(int flightNumber, String flightModel, String carrierName, int seatCapacity) {
 	super();
 	this.flightNumber = flightNumber;
 	this.flightModel = flightModel;
@@ -21,10 +19,10 @@ public class Flight {
 	super();
 	}
 
-	public BigInteger getFlightNumber() {
+	public int getFlightNumber() {
 	return flightNumber;
 	}
-	public void setFlightNumber(BigInteger flightNumber) {
+	public void setFlightNumber(int flightNumber) {
 	this.flightNumber = flightNumber;
 	}
 	public String getFlightModel() {
@@ -46,5 +44,11 @@ public class Flight {
 	this.seatCapacity = seatCapacity;
 	}
 
+	@Override
+	public String toString() {
+		return "Flight [flightNumber=" + flightNumber + ", flightModel=" + flightModel + ", carrierName=" + carrierName
+				+ ", seatCapacity=" + seatCapacity + "]";
+	}
+	
 
 }

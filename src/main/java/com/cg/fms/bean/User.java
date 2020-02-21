@@ -1,17 +1,15 @@
 package com.cg.fms.bean;
 
-import java.math.BigInteger;
-
 public class User {
 	
 	private String userType;
-	private BigInteger userId;
+	private int userId;
 	private String userName;
 	private String password;
-	private BigInteger userPhone;
+	private int userPhone;
 	private String userEmail;
 	
-	public User(String userType, BigInteger userId, String userName, String password, BigInteger userPhone,
+	public User(String userType, int userId, String userName, String password, int userPhone,
 	String userEmail) {
 	super();
 	this.userType = userType;
@@ -31,10 +29,10 @@ public class User {
 	public void setUserType(String userType) {
 	this.userType = userType;
 	}
-	public BigInteger getUserId() {
+	public int getUserId() {
 	return userId;
 	}
-	public void setUserId(BigInteger userId) {
+	public void setUserId(int userId) {
 	this.userId = userId;
 	}
 	public String getUserName() {
@@ -49,10 +47,10 @@ public class User {
 	public void setPassword(String password) {
 	this.password = password;
 	}
-	public BigInteger getUserPhone() {
+	public int getUserPhone() {
 	return userPhone;
 	}
-	public void setUserPhone(BigInteger userPhone) {
+	public void setUserPhone(int userPhone) {
 	this.userPhone = userPhone;
 	}
 	public String getUserEmail() {
@@ -60,6 +58,12 @@ public class User {
 	}
 	public void setUserEmail(String userEmail) {
 	this.userEmail = userEmail;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userType=" + userType + ", userId=" + userId + ", userName=" + userName + ", password=" + password
+				+ ", userPhone=" + userPhone + ", userEmail=" + userEmail + "]";
 	}
 
 }

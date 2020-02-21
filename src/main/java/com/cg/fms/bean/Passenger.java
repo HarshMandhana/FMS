@@ -1,15 +1,13 @@
 package com.cg.fms.bean;
 
-import java.math.BigInteger;
-
 public class Passenger {
 	
-	private BigInteger pnrNumber;
+	private int pnrNumber;
 	private String passengerName;
-	private Integer passengerAge;
-	private BigInteger passengerUIN;
+	private int passengerAge;
+	private int passengerUIN;
 	private double luggage;
-	public Passenger(BigInteger pnrNumber, String passengerName, Integer passengerAge, BigInteger passengerUIN,
+	public Passenger(int pnrNumber, String passengerName, int passengerAge, int passengerUIN,
 	double luggage) {
 	super();
 	this.pnrNumber = pnrNumber;
@@ -21,10 +19,10 @@ public class Passenger {
 	public Passenger() {
 	super();
 	}
-	public BigInteger getPnrNumber() {
+	public int getPnrNumber() {
 	return pnrNumber;
 	}
-	public void setPnrNumber(BigInteger pnrNumber) {
+	public void setPnrNumber(int pnrNumber) {
 	this.pnrNumber = pnrNumber;
 	}
 	public String getPassengerName() {
@@ -33,16 +31,16 @@ public class Passenger {
 	public void setPassengerName(String passengerName) {
 	this.passengerName = passengerName;
 	}
-	public Integer getPassengerAge() {
+	public int getPassengerAge() {
 	return passengerAge;
 	}
 	public void setPassengerAge(Integer passengerAge) {
 	this.passengerAge = passengerAge;
 	}
-	public BigInteger getPassengerUIN() {
+	public int getPassengerUIN() {
 	return passengerUIN;
 	}
-	public void setPassengerUIN(BigInteger passengerUIN) {
+	public void setPassengerUIN(int passengerUIN) {
 	this.passengerUIN = passengerUIN;
 	}
 	public double getLuggage() {
@@ -51,5 +49,10 @@ public class Passenger {
 	public void setLuggage(double luggage) {
 	this.luggage = luggage;
 	}
-
+	@Override
+	public String toString() {
+		return "Passenger [pnrNumber=" + pnrNumber + ", passengerName=" + passengerName + ", passengerAge="
+				+ passengerAge + ", passengerUIN=" + passengerUIN + ", luggage=" + luggage + "]";
+	}
+	
 }
