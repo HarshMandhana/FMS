@@ -3,6 +3,7 @@ package com.cg.fms.pl;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class Client {
 		int choice=0;
 		Booking booking=null;
 		List<Booking> list=null;
+		List<Passenger> listofpassenger=null;
 		User u3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
 		Flight f3= new Flight(1003,"FIRSTCLASS","INS",50);
 		
@@ -51,6 +53,33 @@ public class Client {
 				System.out.println("Enter number of passengers");
 				int d1=sc.nextInt();
 				sc.nextLine();
+				System.out.println("Enter Passenger Details");
+				List<Passenger> list1=new ArrayList<Passenger>();
+				
+				System.out.println("Enter pnr number");
+				int pnr=sc.nextInt();
+				for(int i=0;i<d1;i++)
+				{
+					Passenger p=new Passenger();
+					System.out.println("Enter Passenger name");
+					String name=sc.next();
+					System.out.println("Enter Passenger age");
+					int age=sc.nextInt();
+					sc.nextLine();
+					System.out.println("Enter Passenger Unique id");
+					int uin=sc.nextInt();
+					sc.nextLine();
+					System.out.println("Enter number of luggage");
+					double luggage=sc.nextDouble();
+					p.setPassengerName(name);
+					p.setPassengerAge(age);
+					p.setPassengerUIN(uin);
+					p.setLuggage(luggage);
+					p.setPnrNumber(pnr);
+					
+					list1.add(p);
+					
+				}
 				double t1=d1*2500.0;
 				
 				booking=new Booking();

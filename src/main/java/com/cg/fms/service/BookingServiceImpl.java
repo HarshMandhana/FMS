@@ -31,7 +31,6 @@ public class BookingServiceImpl implements BookingService{
 		{
 			throw new BookingException("passengers should not be zero and not more than six");
 		}
-		
 		Random random=new Random();
 		int id=random.nextInt(8999)+1000;
 		booking.setBookingId(id);
