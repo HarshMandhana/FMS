@@ -67,15 +67,18 @@ public class Client {
 				break;
 				
 			case 2:
-				/*System.out.println("Modify Booking");
+				System.out.println("Modify Booking");
+				System.out.println("New Number of passenger");
+				int no=sc.nextInt();
+				sc.nextLine();
 				try
 				{
-					
+					Booking modify=bookingservice.modifyBooking(booking, no);
 				}
 				catch(BookingException e)
 				{
 					System.err.println(e.getMessage());
-				}*/
+				}
 				break;
 				
 			case 3:

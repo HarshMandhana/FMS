@@ -38,7 +38,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public Booking modifyBooking(Booking booking)  throws BookingException{
+	public Booking modifyBooking(Booking booking,int noofpassengers)  throws BookingException{
 
 		boolean flag=false,flag1=false;
 		String num=String.valueOf(booking.getNoOfPassengers());
@@ -53,7 +53,7 @@ public class BookingServiceImpl implements BookingService{
 		{
 			throw new BookingException("Date should be in yyyy-MM-dd format");
 		}
-		return bookingdao.modifyBooking(booking);
+		return bookingdao.modifyBooking(booking,noofpassengers);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface BookingService {
 	
 	public Booking addBooking(Booking booking) throws BookingException;
 	
-	public Booking modifyBooking(Booking booking) throws BookingException;
+	public Booking modifyBooking(Booking booking,int noofpassengers) throws BookingException;
 	
 	public List<Booking> viewBooking(int bookingid) throws BookingException;
 	
