@@ -9,6 +9,7 @@ import com.cg.fms.bean.Airport;
 import com.cg.fms.bean.Booking;
 import com.cg.fms.bean.DateTime;
 import com.cg.fms.bean.Flight;
+import com.cg.fms.bean.Passenger;
 import com.cg.fms.bean.Schedule;
 import com.cg.fms.bean.ScheduledFlight;
 import com.cg.fms.bean.User;
@@ -18,11 +19,13 @@ public class BookingDaoImpl implements BookingDao{
 	
 	private List<Booking> bookingList;
 	private List<ScheduledFlight>  listOfScheduleFlight;
+	private List<Passenger> passengerlist;
 	
 	public BookingDaoImpl()
 	{
 		bookingList=new ArrayList<Booking>();
 		listOfScheduleFlight=new ArrayList<ScheduledFlight>();
+		passengerlist=new ArrayList<Passenger>();
 		
 		Flight f1= new Flight(1001,"BUSSINESS","INS",100);
 		Flight f2= new Flight(1002,"ECONOMY","INS",80);
@@ -59,8 +62,24 @@ public class BookingDaoImpl implements BookingDao{
 		User u2=new User("User",101,"naveen","naveen12",5469,"naveen123@gmail.com");
 		User u3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
 		
-		Booking b1=new Booking(5658,u1,LocalDate.now(),5000.0,f1,2);
-		Booking b2=new Booking(5487,u2,LocalDate.now(),7500.0,f2,3);
+		Passenger p1=new Passenger(5478,"yfr",54,9764,2.0);
+		Passenger p2=new Passenger(5478,"hgf",45,9764,2.0);
+		
+		List<Passenger> list=new ArrayList<Passenger>();
+		list.add(p1);
+		list.add(p2);
+		
+		Passenger p3=new Passenger(5445,"fd",12,9764,2.0);
+		Passenger p4=new Passenger(5445,"gfrs",68,9764,2.0);
+		Passenger p5=new Passenger(5445,"hrs",45,9764,2.0);
+		
+		List<Passenger> list1=new ArrayList<Passenger>();
+		list1.add(p3);
+		list1.add(p4);
+		list1.add(p5);
+		
+		Booking b1=new Booking(5658,u1,LocalDate.now(),list,5000.0,f1,2);
+		Booking b2=new Booking(5487,u2,LocalDate.now(),list1,7500.0,f2,3);
 		
 		bookingList.add(b1);
 		bookingList.add(b2);
@@ -112,7 +131,8 @@ public class BookingDaoImpl implements BookingDao{
 	@Override
 	public List<Booking> viewBooking(int bookingid)  throws BookingException{
 		
-		if(bookingid != 0)
+		boolean flag=bookingList.stream().anyMatch(p->p.getBookingId()==bookingid);
+		if(flag==true)
 		{
 		List<Booking> list=bookingList.stream().filter(p->p.getBookingId()==bookingid?true:false).collect(Collectors.toList());
 		return list;

@@ -14,7 +14,7 @@ public class Booking {
     Flight flight;
     int noOfPassengers;
       
-	public Booking(int bookingId, User userId, LocalDate bookingDate, double ticketCost, Flight flight,
+	/*public Booking(int bookingId, User userId, LocalDate bookingDate, double ticketCost, Flight flight,
 			int noOfPassengers) {
 		super();
 		this.bookingId = bookingId;
@@ -23,7 +23,20 @@ public class Booking {
 		this.ticketCost = ticketCost;
 		this.flight = flight;
 		this.noOfPassengers = noOfPassengers;
+	}*/
+	
+	public Booking(int bookingId, User userId, LocalDate bookingDate, List<Passenger> passengerList, double ticketCost,
+			Flight flight, int noOfPassengers) {
+		super();
+		this.bookingId = bookingId;
+		this.userId = userId;
+		this.bookingDate = bookingDate;
+		this.passengerList = passengerList;
+		this.ticketCost = ticketCost;
+		this.flight = flight;
+		this.noOfPassengers = noOfPassengers;
 	}
+
 	public Booking() {
 		super();
 	}

@@ -24,13 +24,13 @@ class Testclass {
 	
 	@Before
 	public void addBooking() 
-	{
+	{/*
 		User u1=new User("User",100,"saiteja","saiteja123",1254,"saiteja@gmail.com");
 		Flight f1= new Flight(1001,"BUSSINESS","INS",100);
 		Booking booking=new Booking(5658,u1,LocalDate.now(),5000.0,f1,2);
 		list=new ArrayList<Booking>();
 		bookingdao=new BookingDaoImpl();
-		list.add(booking);
+		list.add(booking);*/
 	}
 		
 	@Test

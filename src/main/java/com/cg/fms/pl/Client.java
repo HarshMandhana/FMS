@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.cg.fms.bean.Booking;
 import com.cg.fms.bean.Flight;
+import com.cg.fms.bean.Passenger;
 import com.cg.fms.bean.User;
 import com.cg.fms.exception.BookingException;
 import com.cg.fms.service.BookingService;
@@ -108,12 +109,12 @@ public class Client {
 						double d2=c.getTicketCost();
 						Flight f=c.getFlight();
 						int num1=c.getNoOfPassengers();
-						System.out.println("Bookingid:"+id+" userId:"+user+" Date:"+l2+" Flight:"+f+" Ticket cost="+d2+" Number of Passengers"+num1);
+						System.out.println("Bookingid:"+id+" ,userId:"+user+" ,Date:"+l2+" ,Flight:"+f+" ,Ticket cost="+d2+" ,Number of Passengers"+num1);
 					}
 				}
 				catch(BookingException e)
 				{
-					System.err.println(e.getMessage());
+					System.err.println("bookingid not found");
 				}
 				
 				break;
@@ -131,7 +132,8 @@ public class Client {
 						double d2=c.getTicketCost();
 						Flight f=c.getFlight();
 						int num1=c.getNoOfPassengers();
-						System.out.println("Bookingid:"+id1+" userId:"+user+" Date:"+l2+" Flight:"+f+" Ticket Cost="+d2+" Number of Passengers:"+num1);
+						List<Passenger> li=c.getPassengerList();
+						System.out.println("Bookingid:"+id1+" ,userId:"+user+" ,Date:"+l2+" ,Flight:"+f+" ,Ticket Cost="+d2+" ,Number of Passengers:"+num1+" ,List of Passenger"+li);
 					}
 				}
 				catch(BookingException e)
