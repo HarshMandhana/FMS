@@ -1,6 +1,8 @@
 package com.cg.fms.pl;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,10 +40,13 @@ public class Client {
 			switch(choice)
 			{
 			case 1:
+				try
+				{
 				int a=u3.getUserId();
-				System.out.println("Enter Date for booking flight in yyyy-MM-dd format");
+				System.out.println("Enter Date for booking flight in dd-mm-yyyy format");
 				String str=sc.next();
-				LocalDate l1=LocalDate.parse(str);
+				DateTimeFormatter pattern=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+				LocalDate l1=LocalDate.parse(str,pattern);
 				System.out.println("Enter number of passengers");
 				int d1=sc.nextInt();
 				sc.nextLine();
@@ -54,8 +59,7 @@ public class Client {
 				booking.setTicketCost(t1);
 				booking.setNoOfPassengers(d1);
 				
-				try
-				{
+				
 					Booking b=bookingservice.addBooking(booking);
 					int id=b.getBookingId();
 					System.out.println("Booking id "+id);
@@ -64,16 +68,25 @@ public class Client {
 				{
 					System.err.println(e.getMessage());
 				}
+				catch(DateTimeParseException e)
+				{
+					System.err.println("Date should be in dd-MM-yyyy format");
+					//System.err.println(e.getMessage());
+				}
 				break;
 				
 			case 2:
-				System.out.println("Modify Booking");
-				System.out.println("New Number of passenger");
-				int no=sc.nextInt();
+				System.out.println("Enter bookingid to modify");
+				int ab=sc.nextInt();
 				sc.nextLine();
+				
 				try
 				{
-					Booking modify=bookingservice.modifyBooking(booking, no);
+					System.out.println("New Number of passenger");
+					int no=sc.nextInt();
+					sc.nextLine();
+					booking=bookingservice.modifyBooking(booking, no);
+					System.out.println("Modified Successfully");
 				}
 				catch(BookingException e)
 				{

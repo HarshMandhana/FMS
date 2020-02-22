@@ -26,10 +26,12 @@ public class BookingServiceImpl implements BookingService{
 		boolean flag=false;
 		String num=String.valueOf(booking.getNoOfPassengers());
 		flag=num.matches("[1-6]");
+		
 		if(flag==false)
 		{
 			throw new BookingException("passengers should not be zero and not more than six");
 		}
+		
 		Random random=new Random();
 		int id=random.nextInt(8999)+1000;
 		booking.setBookingId(id);
@@ -40,19 +42,16 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public Booking modifyBooking(Booking booking,int noofpassengers)  throws BookingException{
 
-		boolean flag=false,flag1=false;
+		boolean flag=false;
 		String num=String.valueOf(booking.getNoOfPassengers());
-		String num1=String.valueOf(booking.getBookingDate());
+		
 		flag=num.matches("[1-6]");
-		flag1=num1.matches("[0-9]{4}-[0-1][0-9]-[0-3][0-9]");
+		
 		if(flag==false)
 		{
 			throw new BookingException("Number of passengers should be not be zero and not more than 6");
 		}
-		if(flag1==false)
-		{
-			throw new BookingException("Date should be in yyyy-MM-dd format");
-		}
+		
 		return bookingdao.modifyBooking(booking,noofpassengers);
 	}
 

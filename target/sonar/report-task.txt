@@ -1,0 +1,6 @@
+projectKey=cg.demo.fms:FMS
+serverUrl=http://localhost:9000
+serverVersion=6.5.0.27846
+dashboardUrl=http://localhost:9000/dashboard/index/cg.demo.fms:FMS
+ceTaskId=AXBrP-uxwiYgsNP2OiOD
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXBrP-uxwiYgsNP2OiOD
