@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,18 +28,23 @@ public class Client {
 		List<Passenger> listofpassenger=null;
 		User u3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
 		Flight f3= new Flight(1003,"FIRSTCLASS","INS",50);
-		
-		while(choice!=6)
+		try
 		{
-			System.out.println("1.Add Booking");
-			System.out.println("2.Modify Booking");
-			System.out.println("3.View details of Bookingid");
-			System.out.println("4.View details of all Bookings");
-			System.out.println("5.Delete Booking");
-			System.out.println("6.Exit");
-			System.out.println("Enter your choice");
+		while(choice!=5)
+		{
 			
+			System.out.println("1.Add Booking");
+			System.out.println("2.View details of Bookingid");
+			System.out.println("3.View details of all Bookings");
+			System.out.println("4.Delete Booking");
+			System.out.println("5.Exit");
+			System.out.println("Enter your choice from 1-5");
 			choice=sc.nextInt();
+			
+			if(choice<1 || choice>5)
+			{
+				System.err.println("Enter Valid Choice from 1-5");
+			}
 			
 			switch(choice)
 			{
@@ -101,30 +107,11 @@ public class Client {
 				catch(DateTimeParseException e)
 				{
 					System.err.println("Date should be in dd-MM-yyyy format");
-					//System.err.println(e.getMessage());
 				}
 				break;
+				
 				
 			case 2:
-				System.out.println("Enter bookingid to modify");
-				int ab=sc.nextInt();
-				sc.nextLine();
-				
-				try
-				{
-					System.out.println("New Number of passenger");
-					int no=sc.nextInt();
-					sc.nextLine();
-					booking=bookingservice.modifyBooking(booking, no);
-					System.out.println("Modified Successfully");
-				}
-				catch(BookingException e)
-				{
-					System.err.println(e.getMessage());
-				}
-				break;
-				
-			case 3:
 				System.out.println("Enter bookingid to get details of that booking");
 				int id=sc.nextInt();
 				sc.nextLine();
@@ -148,7 +135,7 @@ public class Client {
 				
 				break;
 				
-			case 4:
+			case 3:
 				System.out.println("Details of all the bookings");
 				try
 				{
@@ -171,7 +158,7 @@ public class Client {
 				}
 				break;
 				
-			case 5:
+			case 4:
 				System.out.println("Enter Bookingid whose booking is to be deleted");
 				int d=sc.nextInt();
 				sc.nextLine();
@@ -186,13 +173,22 @@ public class Client {
 				}
 				break;
 			
-			case 6:
+			case 5:
 				
 				System.out.println("Thank you");
 				return;
 			}
 		}
-
+		
+		}
+		
+		catch(InputMismatchException e)
+		{
+			
+			System.err.println("Enter Valid Choice From 1-5");
+			
+		}
+		
 	}
-
+		
 }

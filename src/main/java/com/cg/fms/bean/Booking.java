@@ -14,17 +14,6 @@ public class Booking {
     Flight flight;
     int noOfPassengers;
       
-	/*public Booking(int bookingId, User userId, LocalDate bookingDate, double ticketCost, Flight flight,
-			int noOfPassengers) {
-		super();
-		this.bookingId = bookingId;
-		this.userId = userId;
-		this.bookingDate = bookingDate;
-		this.ticketCost = ticketCost;
-		this.flight = flight;
-		this.noOfPassengers = noOfPassengers;
-	}*/
-	
 	public Booking(int bookingId, User userId, LocalDate bookingDate, List<Passenger> passengerList, double ticketCost,
 			Flight flight, int noOfPassengers) {
 		super();

@@ -23,7 +23,7 @@ public class BookingServiceImpl implements BookingService{
 	@Override
 	public Booking addBooking(Booking booking)  throws BookingException{
 		
-		boolean flag=false;
+		boolean flag=false,flag1=false;
 		String num=String.valueOf(booking.getNoOfPassengers());
 		flag=num.matches("[1-6]");
 		
@@ -31,6 +31,7 @@ public class BookingServiceImpl implements BookingService{
 		{
 			throw new BookingException("passengers should not be zero and not more than six");
 		}
+		
 		Random random=new Random();
 		int id=random.nextInt(8999)+1000;
 		booking.setBookingId(id);
