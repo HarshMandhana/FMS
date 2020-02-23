@@ -26,8 +26,8 @@ public class Client {
 		Booking booking=null;
 		List<Booking> list=null;
 		List<Passenger> listofpassenger=null;
-		User u3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
-		Flight f3= new Flight(1003,"FIRSTCLASS","INS",50);
+		User user3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
+		Flight flight3= new Flight(1003,"FIRSTCLASS","INS",50);
 		try
 		{
 		while(choice!=5)
@@ -51,54 +51,54 @@ public class Client {
 			case 1:
 				try
 				{
-				int a=u3.getUserId();
+				user3.getUserId();
 				System.out.println("Enter Date for booking flight in dd-mm-yyyy format");
 				String str=sc.next();
 				DateTimeFormatter pattern=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate l1=LocalDate.parse(str,pattern);
+				LocalDate localdate1=LocalDate.parse(str,pattern);
 				System.out.println("Enter number of passengers");
-				int d1=sc.nextInt();
+				int numofpassenger=sc.nextInt();
 				sc.nextLine();
 				System.out.println("Enter Passenger Details");
 				List<Passenger> list1=new ArrayList<Passenger>();
 				
 				System.out.println("Enter pnr number");
 				int pnr=sc.nextInt();
-				for(int i=0;i<d1;i++)
+				for(int i=0;i<numofpassenger;i++)
 				{
-					Passenger p=new Passenger();
+					Passenger passenger=new Passenger();
 					System.out.println("Enter Passenger name");
 					String name=sc.next();
 					System.out.println("Enter Passenger age");
 					int age=sc.nextInt();
 					sc.nextLine();
 					System.out.println("Enter Passenger Unique id");
-					int uin=sc.nextInt();
+					int uid=sc.nextInt();
 					sc.nextLine();
 					System.out.println("Enter number of luggage");
 					double luggage=sc.nextDouble();
-					p.setPassengerName(name);
-					p.setPassengerAge(age);
-					p.setPassengerUIN(uin);
-					p.setLuggage(luggage);
-					p.setPnrNumber(pnr);
+					passenger.setPassengerName(name);
+					passenger.setPassengerAge(age);
+					passenger.setPassengerUIN(uid);
+					passenger.setLuggage(luggage);
+					passenger.setPnrNumber(pnr);
 					
-					list1.add(p);
+					list1.add(passenger);
 					
 				}
-				double t1=d1*2500.0;
+				double ticketcost=numofpassenger*2500.0;
 				
 				booking=new Booking();
-				booking.setUserId(u3);
-				booking.setBookingDate(l1);
-				booking.setFlight(f3);
-				booking.setTicketCost(t1);
-				booking.setNoOfPassengers(d1);
+				booking.setUserId(user3);
+				booking.setBookingDate(localdate1);
+				booking.setFlight(flight3);
+				booking.setTicketCost(ticketcost);
+				booking.setNoOfPassengers(numofpassenger);
+				booking.setPassengerList(list1);
 				
-				
-					Booking b=bookingservice.addBooking(booking);
-					int id=b.getBookingId();
-					System.out.println("Booking id "+id);
+					Booking booking1=bookingservice.addBooking(booking);
+					int bookingid=booking1.getBookingId();
+					System.out.println("Booking id "+bookingid);
 				}
 				catch(BookingException e)
 				{
@@ -113,19 +113,19 @@ public class Client {
 				
 			case 2:
 				System.out.println("Enter bookingid to get details of that booking");
-				int id=sc.nextInt();
+				int bookingid=sc.nextInt();
 				sc.nextLine();
 				try
 				{
-					List<Booking> li=bookingservice.viewBooking(id);
-					for(Booking c: li)
+					List<Booking> list2=bookingservice.viewBooking(bookingid);
+					for(Booking bookinglist: list2)
 					{
-						User user=c.getUserId();
-						LocalDate l2=c.getBookingDate();
-						double d2=c.getTicketCost();
-						Flight f=c.getFlight();
-						int num1=c.getNoOfPassengers();
-						System.out.println("Bookingid:"+id+" ,userId:"+user+" ,Date:"+l2+" ,Flight:"+f+" ,Ticket cost="+d2+" ,Number of Passengers"+num1);
+						User user=bookinglist.getUserId();
+						LocalDate localdate=bookinglist.getBookingDate();
+						double ticketcost=bookinglist.getTicketCost();
+						Flight flight=bookinglist.getFlight();
+						int numofpassenger=bookinglist.getNoOfPassengers();
+						System.out.println("Bookingid:"+bookingid+" ,userId:"+user+" ,Date:"+localdate+" ,Flight:"+flight+" ,Ticket cost="+ticketcost+" ,Number of Passengers"+numofpassenger);
 					}
 				}
 				catch(BookingException e)
@@ -140,16 +140,16 @@ public class Client {
 				try
 				{
 					List<Booking> listall=bookingservice.viewBooking();
-					for(Booking c: listall)
+					for(Booking list3: listall)
 					{
-						int id1=c.getBookingId();
-						User user=c.getUserId();
-						LocalDate l2=c.getBookingDate();
-						double d2=c.getTicketCost();
-						Flight f=c.getFlight();
-						int num1=c.getNoOfPassengers();
-						List<Passenger> li=c.getPassengerList();
-						System.out.println("Bookingid:"+id1+" ,userId:"+user+" ,Date:"+l2+" ,Flight:"+f+" ,Ticket Cost="+d2+" ,Number of Passengers:"+num1+" ,List of Passenger"+li);
+						int bookingid1=list3.getBookingId();
+						User user=list3.getUserId();
+						LocalDate localdate=list3.getBookingDate();
+						double ticketcost=list3.getTicketCost();
+						Flight flight=list3.getFlight();
+						int numofpassenger=list3.getNoOfPassengers();
+						List<Passenger> listpassenger=list3.getPassengerList();
+						System.out.println("Bookingid:"+bookingid1+" ,userId:"+user+" ,Date:"+localdate+" ,Flight:"+flight+" ,Ticket Cost="+ticketcost+" ,Number of Passengers:"+numofpassenger+" ,List of Passenger"+listpassenger);
 					}
 				}
 				catch(BookingException e)
@@ -160,11 +160,11 @@ public class Client {
 				
 			case 4:
 				System.out.println("Enter Bookingid whose booking is to be deleted");
-				int d=sc.nextInt();
+				int bookingid4=sc.nextInt();
 				sc.nextLine();
 				try
 				{
-					bookingservice.deleteBooking(d);
+					bookingservice.deleteBooking(bookingid4);
 					System.out.println("Delete successful");
 				}
 				catch(BookingException e)

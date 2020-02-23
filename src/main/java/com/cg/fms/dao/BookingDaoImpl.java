@@ -27,17 +27,17 @@ public class BookingDaoImpl implements BookingDao{
 		listOfScheduleFlight=new ArrayList<ScheduledFlight>();
 		passengerlist=new ArrayList<Passenger>();
 		
-		Flight f1= new Flight(1001,"BUSSINESS","INS",100);
-		Flight f2= new Flight(1002,"ECONOMY","INS",80);
-		Flight f3= new Flight(1003,"FIRSTCLASS","INS",50);
+		Flight flight1= new Flight(1001,"BUSSINESS","INS",100);
+		Flight flight2= new Flight(1002,"ECONOMY","INS",80);
+		Flight flight3= new Flight(1003,"FIRSTCLASS","INS",50);
 		
-		Airport s1= new Airport("Rajiv Gandhi International Airport","HYD","Hyderabad");
-		Airport s2= new Airport("chathrapathi Shivaji International Airport","MUM","Mumbai");
-		Airport s3= new Airport("Kempoguda Airport","BEN","Bengaluru");
+		Airport scheduleairport1= new Airport("Rajiv Gandhi International Airport","HYD","Hyderabad");
+		Airport scheduleairport2= new Airport("chathrapathi Shivaji International Airport","MUM","Mumbai");
+		Airport scheduleairport3= new Airport("Kempoguda Airport","BEN","Bengaluru");
 		
-		Airport d1= new Airport("Rajiv Gandhi International Airport","HYD","Hyderabad");
-		Airport d2= new Airport("chathrapathi Shivaji International Airport","MUM","Mumbai");
-		Airport d3= new Airport("Kempoguda Airport","BEN","Bengaluru");
+		Airport departureairport1= new Airport("Rajiv Gandhi International Airport","HYD","Hyderabad");
+		Airport departureairport2= new Airport("chathrapathi Shivaji International Airport","MUM","Mumbai");
+		Airport departureairport3= new Airport("Kempoguda Airport","BEN","Bengaluru");
 		
 		DateTime date1 = new DateTime("02-03-2020","13:00");
 		DateTime date2 = new DateTime("03-03-2020","14:00");
@@ -46,43 +46,43 @@ public class BookingDaoImpl implements BookingDao{
 		DateTime date5 = new DateTime("01-03-2020","01:00");
 		DateTime date6 = new DateTime("01-03-2020","14:00");
 		
-		Schedule sch1 = new Schedule(s1,d1,date1,date2);
-		Schedule sch2 = new Schedule(s2,d2,date3,date4);
-		Schedule sch3 = new Schedule(s3,d3,date5,date6);
+		Schedule sch1 = new Schedule(scheduleairport1,departureairport1,date1,date2);
+		Schedule sch2 = new Schedule(scheduleairport2,departureairport2,date3,date4);
+		Schedule sch3 = new Schedule(scheduleairport3,departureairport3,date5,date6);
 		
-		ScheduledFlight schd1 = new ScheduledFlight(f1,100,sch1);
-		ScheduledFlight schd2 = new ScheduledFlight(f2,80,sch2);
-		ScheduledFlight schd3 = new ScheduledFlight(f3,50,sch3);
+		ScheduledFlight schd1 = new ScheduledFlight(flight1,100,sch1);
+		ScheduledFlight schd2 = new ScheduledFlight(flight2,80,sch2);
+		ScheduledFlight schd3 = new ScheduledFlight(flight3,50,sch3);
 		
 		listOfScheduleFlight.add(schd1);
 		listOfScheduleFlight.add(schd2);
 		listOfScheduleFlight.add(schd3);
 		
-		User u1=new User("User",100,"saiteja","saiteja123",1254,"saiteja@gmail.com");
-		User u2=new User("User",101,"naveen","naveen12",5469,"naveen123@gmail.com");
-		User u3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
+		User user1=new User("User",100,"saiteja","saiteja123",1254,"saiteja@gmail.com");
+		User user2=new User("User",101,"naveen","naveen12",5469,"naveen123@gmail.com");
+		User user3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
 		
-		Passenger p1=new Passenger(5478,"yfr",54,9764,2.0);
-		Passenger p2=new Passenger(5478,"hgf",45,9764,2.0);
+		Passenger passenger1=new Passenger(5478,"yfr",54,9764,2.0);
+		Passenger passenger2=new Passenger(5478,"hgf",45,9764,2.0);
 		
 		List<Passenger> list=new ArrayList<Passenger>();
-		list.add(p1);
-		list.add(p2);
+		list.add(passenger1);
+		list.add(passenger2);
 		
-		Passenger p3=new Passenger(5445,"fd",12,9764,2.0);
-		Passenger p4=new Passenger(5445,"gfrs",68,9764,2.0);
-		Passenger p5=new Passenger(5445,"hrs",45,9764,2.0);
+		Passenger passenger3=new Passenger(5445,"fd",12,9764,2.0);
+		Passenger passenger4=new Passenger(5445,"gfrs",68,9764,2.0);
+		Passenger passenger5=new Passenger(5445,"hrs",45,9764,2.0);
 		
 		List<Passenger> list1=new ArrayList<Passenger>();
-		list1.add(p3);
-		list1.add(p4);
-		list1.add(p5);
+		list1.add(passenger3);
+		list1.add(passenger4);
+		list1.add(passenger5);
 		
-		Booking b1=new Booking(5658,u1,LocalDate.now(),list,5000.0,f1,2);
-		Booking b2=new Booking(5487,u2,LocalDate.now(),list1,7500.0,f2,3);
+		Booking booking1=new Booking(5658,user1,LocalDate.now(),list,5000.0,flight1,2);
+		Booking booking2=new Booking(5487,user2,LocalDate.now(),list1,7500.0,flight2,3);
 		
-		bookingList.add(b1);
-		bookingList.add(b2);
+		bookingList.add(booking1);
+		bookingList.add(booking2);
 		
 	}
 
@@ -93,13 +93,13 @@ public class BookingDaoImpl implements BookingDao{
 		if(booking != null)
 		{
 		    boolean flag = listOfScheduleFlight.stream().anyMatch(p ->p.getFlight().getFlightNumber() == booking.getFlight().getFlightNumber() && p.getAvailableSeats() >= booking.getNoOfPassengers());
-			if( flag )
+		    if( flag )
 			{
 				bookingList.add(booking);
-				List<ScheduledFlight> a=listOfScheduleFlight.stream().filter(p ->p.getFlight().getFlightNumber() == booking.getFlight().getFlightNumber()?true:false).collect(Collectors.toList());
-				for(ScheduledFlight l :a)
+				List<ScheduledFlight> list=listOfScheduleFlight.stream().filter(p ->p.getFlight().getFlightNumber() == booking.getFlight().getFlightNumber()?true:false).collect(Collectors.toList());
+				for(ScheduledFlight flightlist :list)
 				{
-					l.setAvailableSeats(l.getAvailableSeats()-booking.getNoOfPassengers());
+					flightlist.setAvailableSeats(flightlist.getAvailableSeats()-booking.getNoOfPassengers());
 				}
 			}
 		}
@@ -164,8 +164,8 @@ public class BookingDaoImpl implements BookingDao{
 		boolean flag=bookingList.stream().anyMatch(p->p.getBookingId()==bookingid);
 		if(flag==true)
 		{
-			Booking li=bookingList.stream().filter(p->p.getBookingId()==bookingid?true:false).findFirst().get();
-				bookingList.remove(li);
+			Booking booking=bookingList.stream().filter(p->p.getBookingId()==bookingid?true:false).findFirst().get();
+				bookingList.remove(booking);
 		}
 		else
 		{
