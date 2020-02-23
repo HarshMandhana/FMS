@@ -41,16 +41,6 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public Booking modifyBooking(Booking booking,int noofpassengers)  throws BookingException{
-
-		boolean flag=false;
-		String num=String.valueOf(booking.getNoOfPassengers());
-		
-		flag=num.matches("[1-6]");
-		
-		if(flag==false)
-		{
-			throw new BookingException("Number of passengers should be not be zero and not more than 6");
-		}
 		
 		return bookingdao.modifyBooking(booking,noofpassengers);
 	}

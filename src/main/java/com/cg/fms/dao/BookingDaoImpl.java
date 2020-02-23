@@ -114,17 +114,6 @@ public class BookingDaoImpl implements BookingDao{
 	@Override
 	public Booking modifyBooking(Booking booking,int noofpassengers) throws BookingException{
 		
-		Boolean flag=bookingList.stream().anyMatch(p->p.getBookingId()==booking.getBookingId());
-		if(flag==true)
-		{
-			
-			booking.setNoOfPassengers(noofpassengers);
-			
-		} 
-		else
-		{
-			throw new BookingException("BookingId Not Found");
-		}
 		return booking;
 	}
 
