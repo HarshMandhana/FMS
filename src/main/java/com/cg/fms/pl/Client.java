@@ -112,11 +112,11 @@ public class Client {
 				
 				
 			case 2:
+				try
+				{
 				System.out.println("Enter bookingid to get details of that booking");
 				int bookingid=sc.nextInt();
 				sc.nextLine();
-				try
-				{
 					List<Booking> list2=bookingservice.viewBooking(bookingid);
 					for(Booking bookinglist: list2)
 					{
@@ -132,7 +132,12 @@ public class Client {
 				{
 					System.err.println("bookingid not found");
 				}
-				
+				catch(InputMismatchException e)
+				{
+					
+					System.err.println("Booking id should contain 4 digits");
+					
+				}
 				break;
 				
 			case 3:
@@ -159,11 +164,12 @@ public class Client {
 				break;
 				
 			case 4:
+				try
+				{
 				System.out.println("Enter Bookingid whose booking is to be deleted");
 				int bookingid4=sc.nextInt();
 				sc.nextLine();
-				try
-				{
+				
 					bookingservice.deleteBooking(bookingid4);
 					System.out.println("Delete successful");
 				}
