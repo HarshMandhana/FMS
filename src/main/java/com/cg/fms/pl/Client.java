@@ -37,17 +37,20 @@ public class Client {
 			System.out.println("3.View details of all Bookings");
 			System.out.println("4.Delete Booking");
 			System.out.println("5.Exit");
+			
 			try
 			{
 			System.out.println("Enter your choice from 1-5");
-			choice=scanner.nextInt();
+			choice=scanner.nextInt(); 
 			scanner.nextLine();
 			}
+			
 			catch(Exception e)
 			{
 				System.err.println("Enter Valid Choice");
 				scanner.nextLine();
 			}
+			
 			if(choice<1 || choice>5)
 			{
 				System.err.println("Choice should be From 1-5");
