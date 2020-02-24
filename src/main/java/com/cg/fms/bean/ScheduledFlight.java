@@ -1,9 +1,10 @@
 package com.cg.fms.bean;
+
 public class ScheduledFlight {
+	
 	private Flight flight;
 	private int availableSeats;
 	private Schedule schedule;
-	
 	
 	public ScheduledFlight(Flight flight, int availableSeats, Schedule schedule) {
 		super();

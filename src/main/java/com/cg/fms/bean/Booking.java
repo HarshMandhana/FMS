@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Booking {
 	
-	int bookingId;
-    User userId;
-    LocalDate bookingDate;
-    List<Passenger> passengerList;
-    double ticketCost;
-    Flight flight;
-    int noOfPassengers;
+	private int bookingId;
+	private User userId;
+	private LocalDate bookingDate;
+	private List<Passenger> passengerList;
+	private double ticketCost;
+	private Flight flight;
+	private int noOfPassengers;
       
 	public Booking(int bookingId, User userId, LocalDate bookingDate, List<Passenger> passengerList, double ticketCost,
 			Flight flight, int noOfPassengers) {

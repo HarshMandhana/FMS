@@ -20,16 +20,15 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-		Scanner sc=new Scanner(System.in);
+		Scanner scanner=new Scanner(System.in);
 		BookingService bookingservice=new BookingServiceImpl();
 		int choice=0;
 		Booking booking=null;
-		List<Booking> list=null;
+		//List<Booking> list=null;
 		List<Passenger> listofpassenger=null;
 		User user3=new User("User",103,"harsh","harsh1",1254,"harsh@gmail.com");
 		Flight flight3= new Flight(1003,"FIRSTCLASS","INS",50);
-		try
-		{
+		
 		while(choice!=5)
 		{
 			
@@ -38,12 +37,20 @@ public class Client {
 			System.out.println("3.View details of all Bookings");
 			System.out.println("4.Delete Booking");
 			System.out.println("5.Exit");
+			try
+			{
 			System.out.println("Enter your choice from 1-5");
-			choice=sc.nextInt();
-			
+			choice=scanner.nextInt();
+			scanner.nextLine();
+			}
+			catch(Exception e)
+			{
+				System.err.println("Enter Valid Choice");
+				scanner.nextLine();
+			}
 			if(choice<1 || choice>5)
 			{
-				System.err.println("Enter Valid Choice from 1-5");
+				System.err.println("Choice should be From 1-5");
 			}
 			
 			switch(choice)
@@ -53,37 +60,37 @@ public class Client {
 				{
 				user3.getUserId();
 				System.out.println("Enter Date for booking flight in dd-mm-yyyy format");
-				String str=sc.next();
+				String str=scanner.next();
 				DateTimeFormatter pattern=DateTimeFormatter.ofPattern("dd-MM-yyyy");
 				LocalDate localdate1=LocalDate.parse(str,pattern);
 				System.out.println("Enter number of passengers");
-				int numofpassenger=sc.nextInt();
-				sc.nextLine();
+				int numofpassenger=scanner.nextInt();
+				scanner.nextLine();
 				System.out.println("Enter Passenger Details");
-				List<Passenger> list1=new ArrayList<Passenger>();
+				List<Passenger> listofpassenger1=new ArrayList<Passenger>();
 				
 				System.out.println("Enter pnr number");
-				int pnr=sc.nextInt();
-				for(int i=0;i<numofpassenger;i++)
+				int pnr=scanner.nextInt();
+				for(int index=0;index<numofpassenger;index++)
 				{
 					Passenger passenger=new Passenger();
 					System.out.println("Enter Passenger name");
-					String name=sc.next();
+					String name=scanner.next();
 					System.out.println("Enter Passenger age");
-					int age=sc.nextInt();
-					sc.nextLine();
+					int age=scanner.nextInt();
+					scanner.nextLine();
 					System.out.println("Enter Passenger Unique id");
-					int uid=sc.nextInt();
-					sc.nextLine();
+					int uid=scanner.nextInt();
+					scanner.nextLine();
 					System.out.println("Enter number of luggage");
-					double luggage=sc.nextDouble();
+					double luggage=scanner.nextDouble();
 					passenger.setPassengerName(name);
 					passenger.setPassengerAge(age);
 					passenger.setPassengerUIN(uid);
 					passenger.setLuggage(luggage);
 					passenger.setPnrNumber(pnr);
 					
-					list1.add(passenger);
+					listofpassenger1.add(passenger);
 					
 				}
 				double ticketcost=numofpassenger*2500.0;
@@ -94,7 +101,7 @@ public class Client {
 				booking.setFlight(flight3);
 				booking.setTicketCost(ticketcost);
 				booking.setNoOfPassengers(numofpassenger);
-				booking.setPassengerList(list1);
+				booking.setPassengerList(listofpassenger1);
 				
 					Booking booking1=bookingservice.addBooking(booking);
 					int bookingid=booking1.getBookingId();
@@ -115,8 +122,8 @@ public class Client {
 				try
 				{
 				System.out.println("Enter bookingid to get details of that booking");
-				int bookingid=sc.nextInt();
-				sc.nextLine();
+				int bookingid=scanner.nextInt();
+				scanner.nextLine();
 					List<Booking> list2=bookingservice.viewBooking(bookingid);
 					for(Booking bookinglist: list2)
 					{
@@ -167,8 +174,8 @@ public class Client {
 				try
 				{
 				System.out.println("Enter Bookingid whose booking is to be deleted");
-				int bookingid4=sc.nextInt();
-				sc.nextLine();
+				int bookingid4=scanner.nextInt();
+				scanner.nextLine();
 				
 					bookingservice.deleteBooking(bookingid4);
 					System.out.println("Delete successful");
@@ -183,16 +190,9 @@ public class Client {
 				
 				System.out.println("Thank you");
 				return;
+				
 			}
-		}
 		
-		}
-		
-		catch(InputMismatchException e)
-		{
-			
-			System.err.println("Enter Valid Choice From 1-5");
-			
 		}
 		
 	}

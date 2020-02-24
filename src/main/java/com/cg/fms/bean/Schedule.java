@@ -1,5 +1,4 @@
 package com.cg.fms.bean;
-//import java.time.DateTime;
 
 public class Schedule {
 	private Airport sourceAirport;

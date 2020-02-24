@@ -24,8 +24,8 @@ public class BookingServiceImpl implements BookingService{
 	public Booking addBooking(Booking booking)  throws BookingException{
 		
 		boolean flag=false,flag1=false;
-		String num=String.valueOf(booking.getNoOfPassengers());
-		flag=num.matches("[1-6]");
+		String numberofpassengers=String.valueOf(booking.getNoOfPassengers());
+		flag=numberofpassengers.matches("[1-6]");
 		
 		if(flag==false)
 		{
@@ -33,8 +33,8 @@ public class BookingServiceImpl implements BookingService{
 		}
 		
 		Random random=new Random();
-		int id=random.nextInt(8999)+1000;
-		booking.setBookingId(id);
+		int bookingid=random.nextInt(8999)+1000;
+		booking.setBookingId(bookingid);
 		
 		return bookingdao.addBooking(booking);
 	}
@@ -49,8 +49,8 @@ public class BookingServiceImpl implements BookingService{
 	public List<Booking> viewBooking(int bookingid)  throws BookingException{
 
 		boolean flag=false;
-		String num=String.valueOf(bookingid);
-		flag=num.matches("[1-9][0-9]{3}");
+		String bookingid1=String.valueOf(bookingid);
+		flag=bookingid1.matches("[1-9][0-9]{3}");
 		if(flag==false)
 		{
 			throw new BookingException("Invalid booking id");
@@ -69,8 +69,8 @@ public class BookingServiceImpl implements BookingService{
 	public void deleteBooking(int bookingid)  throws BookingException{
 		
 		boolean flag=false;
-		String num=String.valueOf(bookingid);
-		flag=num.matches("[1-9][0-9]{3}");
+		String bookingid2=String.valueOf(bookingid);
+		flag=bookingid2.matches("[1-9][0-9]{3}");
 		if(flag==false)
 		{
 			throw new BookingException("Invalid booking id");
@@ -85,8 +85,8 @@ public class BookingServiceImpl implements BookingService{
 	public void validateBooking(Booking booking)  throws BookingException{
 
 		boolean flag=false;
-		String id=String.valueOf(booking.getBookingId());
-		flag=id.matches("[1-9](0-9){3}");
+		String bookingid3=String.valueOf(booking.getBookingId());
+		flag=bookingid3.matches("[1-9](0-9){3}");
 		if(flag==false)
 		{
 			throw new BookingException("Invalid booking id");
@@ -98,8 +98,8 @@ public class BookingServiceImpl implements BookingService{
 	public void validatePassenger(Passenger passenger)  throws BookingException{
 		
 		boolean flag=false;
-		String pnrnum=String.valueOf(passenger.getPnrNumber());
-		flag=pnrnum.matches("[1-9](0-9){3}");
+		String pnrnumber=String.valueOf(passenger.getPnrNumber());
+		flag=pnrnumber.matches("[1-9](0-9){3}");
 		if(flag==false)
 		{
 			throw new BookingException("Invalid Passenger pnrNumber");
