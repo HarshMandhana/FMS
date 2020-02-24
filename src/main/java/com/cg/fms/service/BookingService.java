@@ -20,5 +20,9 @@ public interface BookingService {
 	public void validateBooking(Booking booking) throws BookingException;
 	
 	public void validatePassenger(Passenger passenger) throws BookingException;
+	
+	public void validateBookingId(int bookingid) throws BookingException;
+	
+	public void validatepnrnumber(int pnrnumber) throws BookingException;
 
 }

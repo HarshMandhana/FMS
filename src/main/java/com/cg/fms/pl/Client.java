@@ -73,7 +73,8 @@ public class Client {
 					List<Passenger> listofpassenger1=new ArrayList<Passenger>();
 				
 					System.out.println("Enter pnr number");
-					int pnr=scanner.nextInt();
+					int pnrnumber=scanner.nextInt();
+					bookingservice.validatepnrnumber(pnrnumber);
 					for(int index=0;index<numofpassenger;index++)
 					{
 						Passenger passenger=new Passenger();
@@ -91,7 +92,7 @@ public class Client {
 						passenger.setPassengerAge(age);
 						passenger.setPassengerUIN(uid);
 						passenger.setLuggage(luggage);
-						passenger.setPnrNumber(pnr);
+						passenger.setPnrNumber(pnrnumber);
 					
 						listofpassenger1.add(passenger);
 					
@@ -118,6 +119,7 @@ public class Client {
 				catch(DateTimeParseException e)
 				{
 					System.err.println("Date should be in dd-MM-yyyy format");
+					scanner.nextLine();
 				}
 				break;
 				
@@ -128,6 +130,7 @@ public class Client {
 					System.out.println("Enter bookingid to get details of that booking");
 					int bookingid=scanner.nextInt();
 					scanner.nextLine();
+					bookingservice.validateBookingId(bookingid);
 					List<Booking> list2=bookingservice.viewBooking(bookingid);
 					for(Booking bookinglist: list2)
 					{
@@ -180,7 +183,8 @@ public class Client {
 					System.out.println("Enter Bookingid whose booking is to be deleted");
 					int bookingid4=scanner.nextInt();
 					scanner.nextLine();
-				
+					bookingservice.validateBookingId(bookingid4);
+					
 					bookingservice.deleteBooking(bookingid4);
 					System.out.println("Delete successful");
 				}
