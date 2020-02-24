@@ -61,54 +61,55 @@ public class Client {
 			case 1:
 				try
 				{
-				user3.getUserId();
-				System.out.println("Enter Date for booking flight in dd-mm-yyyy format");
-				String str=scanner.next();
-				DateTimeFormatter pattern=DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate localdate1=LocalDate.parse(str,pattern);
-				System.out.println("Enter number of passengers");
-				int numofpassenger=scanner.nextInt();
-				scanner.nextLine();
-				System.out.println("Enter Passenger Details");
-				List<Passenger> listofpassenger1=new ArrayList<Passenger>();
-				
-				System.out.println("Enter pnr number");
-				int pnr=scanner.nextInt();
-				for(int index=0;index<numofpassenger;index++)
-				{
-					Passenger passenger=new Passenger();
-					System.out.println("Enter Passenger name");
-					String name=scanner.next();
-					System.out.println("Enter Passenger age");
-					int age=scanner.nextInt();
+					user3.getUserId();
+					System.out.println("Enter Date for booking flight in dd-mm-yyyy format");
+					String str=scanner.next();
+					DateTimeFormatter pattern=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					LocalDate localdate1=LocalDate.parse(str,pattern);
+					System.out.println("Enter number of passengers");
+					int numofpassenger=scanner.nextInt();
 					scanner.nextLine();
-					System.out.println("Enter Passenger Unique id");
-					int uid=scanner.nextInt();
-					scanner.nextLine();
-					System.out.println("Enter number of luggage");
-					double luggage=scanner.nextDouble();
-					passenger.setPassengerName(name);
-					passenger.setPassengerAge(age);
-					passenger.setPassengerUIN(uid);
-					passenger.setLuggage(luggage);
-					passenger.setPnrNumber(pnr);
-					
-					listofpassenger1.add(passenger);
-					
-				}
-				double ticketcost=numofpassenger*2500.0;
+					System.out.println("Enter Passenger Details");
+					List<Passenger> listofpassenger1=new ArrayList<Passenger>();
 				
-				booking=new Booking();
-				booking.setUserId(user3);
-				booking.setBookingDate(localdate1);
-				booking.setFlight(flight3);
-				booking.setTicketCost(ticketcost);
-				booking.setNoOfPassengers(numofpassenger);
-				booking.setPassengerList(listofpassenger1);
+					System.out.println("Enter pnr number");
+					int pnr=scanner.nextInt();
+					for(int index=0;index<numofpassenger;index++)
+					{
+						Passenger passenger=new Passenger();
+						System.out.println("Enter Passenger name");
+						String name=scanner.next();
+						System.out.println("Enter Passenger age");
+						int age=scanner.nextInt();
+						scanner.nextLine();
+						System.out.println("Enter Passenger Unique id");
+						int uid=scanner.nextInt();
+						scanner.nextLine();
+						System.out.println("Enter number of luggage");
+						double luggage=scanner.nextDouble();
+						passenger.setPassengerName(name);
+						passenger.setPassengerAge(age);
+						passenger.setPassengerUIN(uid);
+						passenger.setLuggage(luggage);
+						passenger.setPnrNumber(pnr);
+					
+						listofpassenger1.add(passenger);
+					
+					}
+					double ticketcost=numofpassenger*2500.0;
+				
+					booking=new Booking();
+					booking.setUserId(user3);
+					booking.setBookingDate(localdate1);
+					booking.setFlight(flight3);
+					booking.setTicketCost(ticketcost);
+					booking.setNoOfPassengers(numofpassenger);
+					booking.setPassengerList(listofpassenger1);
 				
 					Booking booking1=bookingservice.addBooking(booking);
 					int bookingid=booking1.getBookingId();
 					System.out.println("Booking id "+bookingid);
+					
 				}
 				catch(BookingException e)
 				{
@@ -124,9 +125,9 @@ public class Client {
 			case 2:
 				try
 				{
-				System.out.println("Enter bookingid to get details of that booking");
-				int bookingid=scanner.nextInt();
-				scanner.nextLine();
+					System.out.println("Enter bookingid to get details of that booking");
+					int bookingid=scanner.nextInt();
+					scanner.nextLine();
 					List<Booking> list2=bookingservice.viewBooking(bookingid);
 					for(Booking bookinglist: list2)
 					{
@@ -176,9 +177,9 @@ public class Client {
 			case 4:
 				try
 				{
-				System.out.println("Enter Bookingid whose booking is to be deleted");
-				int bookingid4=scanner.nextInt();
-				scanner.nextLine();
+					System.out.println("Enter Bookingid whose booking is to be deleted");
+					int bookingid4=scanner.nextInt();
+					scanner.nextLine();
 				
 					bookingservice.deleteBooking(bookingid4);
 					System.out.println("Delete successful");
@@ -186,6 +187,11 @@ public class Client {
 				catch(BookingException e)
 				{
 					System.err.println(e.getMessage());
+				}
+				catch(Exception e)
+				{
+					System.err.println("Give Valid Input");
+					
 				}
 				break;
 			
